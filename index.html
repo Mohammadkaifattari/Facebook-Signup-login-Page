@@ -93,22 +93,26 @@
       </div>
 
       <label style="display: block; margin-top: 10px; font-size: 12px; color: #606770;">
-        Date of birth (optional)
-      </label>
-      <div style="display: flex; gap: 10px;">
-        <select style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-          <option value="">Day</option>
-          <option>9</option>
-        </select>
-        <select style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-          <option value="">Month</option>
-          <option>Oct</option>
-        </select>
-        <select style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-          <option value="">Year</option>
-          <option>2025</option>
-        </select>
-      </div>
+  Date of birth (optional)
+</label>
+
+<div style="display: flex; gap: 10px;">
+  <!-- Day -->
+  <select id="day" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+    <option value="">Day</option>
+  </select>
+
+  <!-- Month -->
+  <select id="month" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+    <option value="">Month</option>
+  </select>
+
+  <!-- Year -->
+  <select id="year" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+    <option value="">Year</option>
+  </select>
+</div>
+
 
       <label style="display: block; margin-top: 10px; font-size: 12px; color: #606770;">Gender</label>
       <div style="display: flex; gap: 10px;">
@@ -138,9 +142,10 @@
         You may receive SMS notifications from us and can opt out at any time.
       </p>
 
+
       <button type="submit" style="width: 100%; background-color: #00a400; color: white; font-weight: bold; border: none; border-radius: 6px; padding: 10px; font-size: 16px; margin-top: 10px; cursor: pointer;">
-        Sign Up
-      </button>
+  Sign Up
+</button>
 
 <p onclick="showSignIn()" style="text-align: center; color: #1877f2; font-size: 14px; margin-top: 15px; cursor: pointer;">
   Already have an account?

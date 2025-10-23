@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook-style Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="renderDashboard()">
+    <!-- Top Navigation -->
+    <header class="top-nav" role="banner">
+        <div class="nav-left">
+            <h1 class="logo" aria-label="Facebook">f</h1>
+            <input type="text" class="search-bar" placeholder="Search Facebook" aria-label="Search Facebook">
+        </div>
+        
+        <nav class="nav-center" role="navigation" aria-label="Main navigation">
+            <button class="nav-icon " aria-label="Home" aria-current="page" onclick="dash()">🏠</button>
+            <button class="nav-icon " aria-label="Watch">📺</button>
+            <button class="nav-icon" aria-label="Marketplace">🏪</button>
+            <button class="nav-icon active" aria-label="Groups">👥</button>
+            <button class="nav-icon" aria-label="Gaming">🎮</button>
+        </nav>
+        
+        <div class="nav-right">
+           <button id="logoutBtn" onclick="logout() " style="
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+">Logout</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container" role="main">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar" role="complementary" aria-label="Quick links">
+            <nav aria-label="Shortcuts">
+                <div class="sidebar-item" role="button" tabindex="0">
+                    <div class="sidebar-icon" id="currentUserPic" aria-hidden="true">
+        <!-- Profile pic will go here -->
+    </div>
+                    <span style="font-size: 30px;" > 👥Friends(<span id="count"></span>)</span>
+                </div>
+                
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <section class="main-content">
+            <!-- Create Post -->
+            <!-- <section class="create-post" aria-labelledby="create-post-heading">
+                <h2 id="create-post-heading" class="sr-only">Create a new post</h2>
+                <div class="post-input">
+                    <div class="user-avatar" aria-hidden="true">JD</div>
+                    <button class="post-text">What's on your mind, John?</button>
+                </div>   
+                <div class="post-actions">
+                    <button class="post-action">
+                        <span aria-hidden="true">📹</span>
+                        <span>Live Video</span>
+                    </button>
+                    <button class="post-action">
+                        <span aria-hidden="true">🖼️</span>
+                        <span>Photo/Video</span>
+                    </button>
+                    <button class="post-action">
+                        <span aria-hidden="true">😊</span>
+                        <span>Feeling/Activity</span>
+                    </button>
+                </div>
+            </section> -->
+
+
+
+         
+            <section class="feed" aria-label="News feed">
+                
+                <article class="post" id="maybeknow">
+                </article>
+            </section>
+        </section>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar" role="complementary" aria-label="Contacts">
+            <h3 style="margin-bottom: 16px; color: #65676b;">Good Things</h3>
+            <div class="contact-item" role="button" tabindex="0">
+                <div class="contact-avatar" aria-hidden="true">S</div>
+                
+                <span>Salah</span>
+            </div>
+            <div class="contact-item" role="button" tabindex="0">
+                <div class="contact-avatar" aria-hidden="true">P</div>
+               
+                <span>Prayers</span>
+            </div>
+            <div class="contact-item" role="button" tabindex="0">
+                <div class="contact-avatar" aria-hidden="true">H</div>
+                
+                <span>Hajj</span>
+            </div>
+            <div class="contact-item" role="button" tabindex="0">
+                <div class="contact-avatar" aria-hidden="true">I</div>
+                
+                <span>Insaf</span>
+            </div>
+            <div class="contact-item" role="button" tabindex="0">
+                <div class="contact-avatar" aria-hidden="true">Z</div>
+                <span>Zakat</span>
+            </div>
+        </aside>
+    </main>
+
+    <script src="apps.js"></script>
+</body>
+</html>
