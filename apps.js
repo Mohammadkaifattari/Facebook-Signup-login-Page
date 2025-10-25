@@ -1,18 +1,23 @@
- currentUser = JSON.parse(localStorage.getItem("currentUser"));
+var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 var users = JSON.parse(localStorage.getItem("users")) || [];
-console.log(users);
 
-window.addEventListener("DOMContentLoaded", function() {
-  currentUser = JSON.parse(localStorage.getItem("currentUser")); // var نہیں
+
+window.addEventListener("DOMContentLoaded", ()=> {
  if (window.location.pathname.includes("dashboard.html")) {
   if (!currentUser) {
     window.location.href = "index.html";
     return;
   }
-  renderDashboard(currentUser);
+  // else if (window.location.pathname.includes("friends.html")) {
+  //   // window.location.href = "friends.html";
+  //    friendsshow()
+  //   // return;
+  // }
+  renderDashboard(currentUser)  
+  //  friendsshow();
 }
  
-  // friendsshow(currentUser);
+  
 });
 
 
@@ -103,13 +108,12 @@ function dash() {window.location.href = "dashboard.html";
 }
 
 function renderDashboard(currentUser) {
-  if (!window.location.href.includes("dashboard.html")) return;
+  // if (!window.location.href.includes("dashboard.html")) return;
+  // if (!currentUser) {
+    //   return;
+    // }
 
-  if (!currentUser) {
   
-    
-    return;
-  }
 
   document.getElementById("currentUserName").innerText = currentUser.fullName;
 
@@ -132,47 +136,17 @@ function showSignIn() {
     document.getElementById("signin").style.display = "block";
     document.getElementById("signup").style.display = "none";
 }
-//  // Days
-//   const daySelect = document.getElementById('day');
-//   for (let i = 1; i <= 31; i++) {
-//     const option = document.createElement('option');
-//     option.value = i;
-//     option.textContent = i;
-//     daySelect.appendChild(option);
-//   }
 
-//   // Months
-//   const monthSelect = document.getElementById('month');
-//   const months = [
-//     'January', 'February', 'March', 'April', 'May', 'June',
-//     'July', 'August', 'September', 'October', 'November', 'December'
-//   ];
-//   months.forEach((month, index) => {
-//     const option = document.createElement('option');
-//     option.value = index + 1;
-//     option.textContent = month;
-//     monthSelect.appendChild(option);
-//   });
-
-//   // Years (e.g. 1900–2025)
-//   const yearSelect = document.getElementById('year');
-//   const currentYear = new Date().getFullYear();
-//   for (let i = currentYear; i >= 1900; i--) {
-//     const option = document.createElement('option');
-//     option.value = i;
-//     option.textContent = i;
-//     yearSelect.appendChild(option);
-//   }
 function friendsshow() {
   if (!currentUser) {
     alert("Please log in first.");
     window.location.href = "index.html";
     return;
-  }else{
+  }
+  else{
      window.location.href = "friends.html";
     
   }
-  
   const Count = document.getElementById("count");
   Count.innerHTML = users.length - 1; 
   
@@ -180,7 +154,7 @@ function friendsshow() {
   maybe.innerHTML = ""; 
   
   users.forEach(user => {
-    if (user.email === currentUser.email) return; // skip self
+    // if (user.email === currentUser.email) return; // skip self
     
     maybe.innerHTML += `
     <div class="contact-item" role="button" tabindex="0">
@@ -191,5 +165,38 @@ function friendsshow() {
     </div>
     `;
   });
-}
   
+}
+
+// friendsshow()
+  //  // Days
+  //   const daySelect = document.getElementById('day');
+  //   for (let i = 1; i <= 31; i++) {
+  //     const option = document.createElement('option');
+  //     option.value = i;
+  //     option.textContent = i;
+  //     daySelect.appendChild(option);
+  //   }
+  
+  //   // Months
+  //   const monthSelect = document.getElementById('month');
+  //   const months = [
+  //     'January', 'February', 'March', 'April', 'May', 'June',
+  //     'July', 'August', 'September', 'October', 'November', 'December'
+  //   ];
+  //   months.forEach((month, index) => {
+  //     const option = document.createElement('option');
+  //     option.value = index + 1;
+  //     option.textContent = month;
+  //     monthSelect.appendChild(option);
+  //   });
+  
+  //   // Years (e.g. 1900–2025)
+  //   const yearSelect = document.getElementById('year');
+  //   const currentYear = new Date().getFullYear();
+  //   for (let i = currentYear; i >= 1900; i--) {
+  //     const option = document.createElement('option');
+  //     option.value = i;
+  //     option.textContent = i;
+  //     yearSelect.appendChild(option);
+  //   }
