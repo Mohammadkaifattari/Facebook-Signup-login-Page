@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook-style Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body >
-    <!-- Top Navigation -->
-    <header class="top-nav" role="banner">
+  <!-- Top Navigation -->
+  <header class="top-nav" role="banner">
         <div class="nav-left">
-            <h1 class="logo" aria-label="Facebook">f</h1>
-            <input type="text" class="search-bar" placeholder="Search Facebook" aria-label="Search Facebook">
+          <h1 class="logo" aria-label="Facebook">f</h1>
+          <input type="text" class="search-bar" placeholder="Search Facebook" aria-label="Search Facebook">
         </div>
         
         <nav class="nav-center" role="navigation" aria-label="Main navigation">
-            <button class="nav-icon " aria-label="Home" aria-current="page" onclick="dash()">🏠</button>
-            <button class="nav-icon " aria-label="Watch">📺</button>
-            <button class="nav-icon" aria-label="Marketplace">🏪</button>
+          <button class="nav-icon " aria-label="Home" aria-current="page" onclick="dash()">🏠</button>
+          <button class="nav-icon " aria-label="Watch">📺</button>
+          <button class="nav-icon" aria-label="Marketplace">🏪</button>
             <button class="nav-icon active" aria-label="Groups">👥</button>
             <button class="nav-icon" aria-label="Gaming">🎮</button>
-        </nav>
-        
-        <div class="nav-right">
-           <button id="logoutBtn" onclick="logout() " style="
+          </nav>
+          
+          <div class="nav-right">
+            <button id="logoutBtn" onclick="logout() " style="
   background-color: #1877f2;
   color: white;
   border: none;
@@ -37,13 +37,13 @@
 
     <!-- Main Container -->
     <main class="container" role="main">
-        <!-- Left Sidebar -->
-        <aside class="left-sidebar" role="complementary" aria-label="Quick links">
-            <nav aria-label="Shortcuts">
-                <div class="sidebar-item" role="button" tabindex="0">
-                    <div class="sidebar-icon" id="currentUserPic" aria-hidden="true">
-        <!-- Profile pic will go here -->
-    </div>
+      <!-- Left Sidebar -->
+      <aside class="left-sidebar" role="complementary" aria-label="Quick links">
+        <nav aria-label="Shortcuts">
+          <div class="sidebar-item" role="button" tabindex="0">
+            <div class="sidebar-icon" id="currentUserPic" aria-hidden="true">
+              <!-- Profile pic will go here -->
+            </div>
                     <span style="font-size: 30px;" > 👥Friends(<span id="count"></span>)</span>
                 </div>
                 
@@ -83,9 +83,9 @@
                 <article class="post" id="maybeknow">
                 </article>
             </section>
-        </section>
+          </section>
 
-        <!-- Right Sidebar -->
+          <!-- Right Sidebar -->
         <aside class="right-sidebar" role="complementary" aria-label="Contacts">
             <h3 style="margin-bottom: 16px; color: #65676b;">Good Things</h3>
             <div class="contact-item" role="button" tabindex="0">
@@ -114,6 +114,98 @@
             </div>
         </aside>
     </main>
+    <script src="friends.js"></script>
 <script src="apps.js"></script>
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facebook-style Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <header class="top-nav" role="banner">
+      <div class="nav-left">
+        <h1 class="logo" aria-label="Facebook">f</h1>
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="Search Facebook"
+          aria-label="Search Facebook"
+        />
+      </div>
+
+      <nav class="nav-center" role="navigation" aria-label="Main navigation">
+        <button class="nav-icon" aria-label="Home" aria-current="page" onclick="dash()">🏠</button>
+        <button class="nav-icon" aria-label="Watch">📺</button>
+        <button class="nav-icon" aria-label="Marketplace">🏪</button>
+        <button class="nav-icon active" aria-label="Groups">👥</button>
+        <button class="nav-icon" aria-label="Gaming">🎮</button>
+      </nav>
+
+      <div class="nav-right">
+        <button
+          id="logoutBtn"
+          onclick="logout()"
+          style="background-color: #1877f2; color: white; border: none;
+                 padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold;"
+        >
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container" role="main">
+      <!-- Left Sidebar -->
+      <aside class="left-sidebar" role="complementary" aria-label="Quick links">
+        <nav aria-label="Shortcuts">
+          <div class="sidebar-item" role="button" tabindex="0">
+            <div class="sidebar-icon" id="currentUserPic" aria-hidden="true"></div>
+            <span style="font-size: 30px">👥Friends(<span id="count">0</span>)</span>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <section class="main-content">
+        <section class="feed" aria-label="News feed">
+          <article class="post" id="maybeknow"></article>
+        </section>
+
+        <!-- below sections will be filled by JS -->
+        <div id="friendRequests" style="margin-top: 30px;"></div>
+        <div id="friendsList" style="margin-top: 30px;"></div>
+      </section>
+
+      <!-- Right Sidebar -->
+      <aside class="right-sidebar" role="complementary" aria-label="Contacts">
+        <h3 style="margin-bottom: 16px; color: #65676b">Good Things</h3>
+        <!-- contacts... -->
+      </aside>
+    </main>
+
+    <!-- load any global app helpers first (if apps.js defines logout/dash globally) -->
+    <script src="apps.js"></script>
+
+    <!-- module script that imports AllData and waits for DOM ready -->
+    <script type="module">
+      import { AllData } from "./data.js";
+      document.addEventListener("DOMContentLoaded", () => {
+        // safety: ensure currentUser exists
+        const cur = localStorage.getItem("currentUser");
+        if (!cur) {
+          console.warn("currentUser not found in localStorage — redirect to login if needed.");
+          // optionally redirect: window.location.href = 'index.html';
+          // return;
+        }
+        AllData();
+      });
+    </script>
+  </body>
+</html> -->
+
 </body>
 </html>
