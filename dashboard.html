@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sty.css">
     <title>Facebook - Social Dashboard</title>
     <style>
         * {
@@ -152,7 +153,7 @@
         /* Left Sidebar */
         .sidebar-left {
             position: sticky;
-            top: 60px;
+            top: -60px;
             height: fit-content;
             background-color: var(--bg-primary);
             border-radius: 8px;
@@ -660,7 +661,7 @@
     <!-- Main Container -->
     <div class="container">
         <!-- Left Sidebar -->
-        <aside class="sidebar-left">
+        <aside class="sidebar-left" style="bottom: -100vh;">
             <div class="user-profile">
                 <div class="user-avatar" id="user-logo"></div>
                 <div class="user-name" id="currentUserName"></div>
@@ -754,73 +755,71 @@
             </div>
 
             <!-- Post 1 -->
-            <div class="post">
-                <div class="post-header">
-                    <div class="post-author">
-                        <div class="post-avatar">AB</div>
-                        <div class="post-info">
-                            <div class="post-name">Alice Brown</div>
-                            <div class="post-time">2 hours ago</div>
-                        </div>
-                    </div>
-                    <div class="post-menu">⋯</div>
-                </div>
-                <div class="post-content">
-                    Just finished an amazing project! Feeling accomplished and ready for the next challenge. 🚀
-                </div>
-                <div class="post-image">Beautiful Sunset</div>
-                <div class="post-actions">
-                    <button class="post-action">👍 Like</button>
-                    <button class="post-action">💬 Comment</button>
-                    <button class="post-action">↗️ Share</button>
-                </div>
+            <div class="container1">
+      <div class="post">
+        <!-- POST HEADER -->
+        <div class="post__header header">
+          <!-- Header left -->
+          <div class="header__left">
+            <a href="#"
+              ><img src="./images/author-pic.jpg" class="post__author-pic"
+            /></a>
+            
+            <div class="post__author author">
+              <span class="author__name"><a href="#"> <div class="user-avatar" id="user-logo"></div>
+                <div class="user-name" id="currentUserName"></div></span>
+              <i class="author__verified"></i>
             </div>
-
-            <!-- Post 2 -->
-            <div class="post">
-                <div class="post-header">
-                    <div class="post-author">
-                        <div class="post-avatar">CM</div>
-                        <div class="post-info">
-                            <div class="post-name">Charlie Miller</div>
-                            <div class="post-time">4 hours ago</div>
-                        </div>
-                    </div>
-                    <div class="post-menu">⋯</div>
-                </div>
-                <div class="post-content">
-                    Exploring new places and making memories with friends. Life is beautiful! 🌍✨
-                </div>
-                <div class="post-image">Travel Adventure</div>
-                <div class="post-actions">
-                    <button class="post-action">👍 Like</button>
-                    <button class="post-action">💬 Comment</button>
-                    <button class="post-action">↗️ Share</button>
-                </div>
+            <span class="post__date"><a href="#">October 13, 2020</a></span>
+            <span class="post__date-privacy-separator">&nbsp;·</span>
+            <i class="post__privacy"></i>
+          </div>
+          <!-- Header right -->
+          <div class="header__right">
+            <div class="post__options options">
+              <i class="options__icon"></i>
             </div>
-
-            <!-- Post 3 -->
-            <div class="post">
-                <div class="post-header">
-                    <div class="post-author">
-                        <div class="post-avatar">SD</div>
-                        <div class="post-info">
-                            <div class="post-name">Sarah Davis</div>
-                            <div class="post-time">6 hours ago</div>
-                        </div>
-                    </div>
-                    <div class="post-menu">⋯</div>
-                </div>
-                <div class="post-content">
-                    Coffee and code - the perfect combination for a productive day! ☕💻
-                </div>
-                <div class="post-image">Workspace Setup</div>
-                <div class="post-actions">
-                    <button class="post-action">👍 Like</button>
-                    <button class="post-action">💬 Comment</button>
-                    <button class="post-action">↗️ Share</button>
-                </div>
+          </div>
+        </div>
+        <!-- POST CONTENT -->
+        <div class="post__content content">
+          <p class="content__paragraph"> hi i am here
+          
+          </p>
+          
+        </div>
+        <!-- POST FOOTER -->
+        <div class="post__footer footer">
+          <!-- Reactions -->
+          <div class="footer__reactions reactions">
+            <div class="reactions__emojis emojis">
+              <img src="images/like.svg" class="emojis__like" />
+              <img src="images/haha.svg" class="emojis__haha" />
+              <img src="images/love.svg" class="emojis__love" />
+              <span class="emojis__count"><a href="#"></a></span>
             </div>
+            <div class="reactions__comments-shares comment-shares">
+              <span class="comment-shares__comments"
+                ><a href="#"> Comments</a></span
+              >
+              <span class="comment-shares__shares"
+                ><a href="#"> Shares</a></span
+              >
+            </div>
+          </div>
+          <!-- Buttons -->
+          <div class="footer__buttons buttons">
+            <span class="buttons__like like"
+              ><i class="like__icon"></i>Like</span
+            >
+            <span class="buttons__comment comment"
+              ><i class="comment__icon"></i>Comment</span
+            >
+            <span class="buttons__share share"
+              ><i class="share__icon"></i>Share</span
+            >
+          </div></div>
+<!--  -->
         </main>
 
         <!-- Right Sidebar -->
@@ -867,3 +866,44 @@
     <script src="apps.js"></script>
 </body>
 </html>
+<!-- 
+            <!-- Post 2 -->
+          <!-- lass="post-name">Sarah Davis</div> -->
+                            <+-->
+                    Coffee an  <!-- <div class="post">
+                <div class="post-header">
+                    <div class="post-author">
+                        <div class="post-avatar">CM</div>
+                        <div class="post-info">
+                            <div class="post-name">Charlie Miller</div>
+                            <div class="post-time">4 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-menu">⋯</div>
+                </div>
+                <div class="post-content">
+                    Exploring new places and making memories with friends. Life is beautiful! 🌍✨
+                </div>
+                <div class="post-image">Travel Adventure</div>
+                <div class="post-actions">
+                    <button class="post-action">👍 Like</button>
+                    <button class="post-action">💬 Comment</button>
+                    <button class="post-action">↗️ Share</button>
+                </div>
+            </div>
+
+            <!-- Post 3 -->
+            <!-- <div class="post">
+                <div class="post-header">
+                    <div class="post-author">
+                        <div class="post-avatar">SD</div>
+                        <div class="post-info">
+                            <div cd code - the perfect combination for a productive day! ☕💻
+                </div>
+                <div class="post-image">Workspace Setup</div>
+                <div class="post-actions">
+                    <button class="post-action">👍 Like</button>
+                    <button class="post-action">💬 Comment</button>
+                    <button class="post-action">↗️ Share</button>
+                </div> -->
+            </div> -->

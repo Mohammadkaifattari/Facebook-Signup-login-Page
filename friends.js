@@ -40,7 +40,7 @@ export function AllData() {
           border: none;
           padding: 5px 10px;
           border-radius: 6px;
-          font-weight: bold;
+          font-weight: bold;  
           margin-right: 5px;
           margin-top: 5px;
         " disabled>Request Sent</button>`;
@@ -103,7 +103,7 @@ window.sendRequest = function (email) {
   });
 
   localStorage.setItem("users", JSON.stringify(users));
-  alert("Friend request sent to " + email);
+  
   AllData();
 };
 
@@ -122,7 +122,7 @@ window.cancelRequest = function (email) {
   });
 
   localStorage.setItem("users", JSON.stringify(users));
-  alert("Friend request canceled to " + email);
+  
   AllData();
 };
 
@@ -199,7 +199,7 @@ window.acceptRequest = function (email) {
   });
 
   localStorage.setItem("users", JSON.stringify(users));
-  alert("You are now friends with " + email);
+
   AllData(); // refresh UI
 };
 
@@ -219,7 +219,7 @@ window.rejectRequest = function (email) {
   });
 
   localStorage.setItem("users", JSON.stringify(users));
-  alert("Friend request rejected from " + email);
+ 
   AllData(); // refresh UI
 };
 
@@ -280,6 +280,6 @@ window.removeFriend = function (email) {
   });
 
   localStorage.setItem("users", JSON.stringify(users));
-  alert("Removed friend: " + email);
+ 
   AllData();
 };

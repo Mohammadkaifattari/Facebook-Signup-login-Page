@@ -22,6 +22,7 @@ class User {
     this.sentRequests = [];
     this.receivedRequests = [];
     this.friends = [];
+    this.post = [];
   }
 }
 
@@ -86,10 +87,10 @@ function dash() {
 }
 
 function renderDashboard(currentUser) {
-  // if (!window.location.href.includes("dashboard.html")) return;
-  // if (!currentUser) {
-  //   return;
-  // }
+  if (!window.location.href.includes("dashboard.html")) return;
+  if (!currentUser) {
+    return;
+  }
 
   document.getElementById("currentUserName").innerText = currentUser.fullName;
 
@@ -152,3 +153,4 @@ function friendsshow() {
 //     option.textContent = i;
 //     yearSelect.appendChild(option);
 //   }
+// 
