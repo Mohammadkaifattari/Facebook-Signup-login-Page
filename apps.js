@@ -1,19 +1,16 @@
+// ===== GLOBAL DATA =====
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+// If user already logged in → redirect from login/signup page
+if (window.location.pathname.includes("index.html") && currentUser) {
+  window.location.href = "dashboard.html";
+}
+
 var users = JSON.parse(localStorage.getItem("users")) || [];
 
-window.addEventListener("DOMContentLoaded", () => {
-  if (window.location.pathname.includes("dashboard.html")) {
-    if (!currentUser) {
-      window.location.href = "index.html";
-      return;
-    }
-
-    renderDashboard(currentUser);
-  }
-});
-
+// ===== USER CLASS =====
 class User {
-  constructor(FirstName, SecondName, fullName, email, password ) {
+  constructor(FirstName, SecondName, fullName, email, password) {
     this.FirstName = FirstName;
     this.SecondName = SecondName;
     this.fullName = fullName;
@@ -26,6 +23,7 @@ class User {
   }
 }
 
+// ===== SIGN UP =====
 function SignUp(event) {
   event.preventDefault();
 
@@ -36,6 +34,7 @@ function SignUp(event) {
   var fullName = FirstName + " " + SecondName;
 
   var user = new User(FirstName, SecondName, fullName, email, password);
+
   if (users.some((u) => u.email === user.email)) {
     alert("Email already registered!");
     return;
@@ -43,65 +42,52 @@ function SignUp(event) {
 
   users.push(user);
   localStorage.setItem("users", JSON.stringify(users));
-  console.log("Saving user:", user);
-  localStorage.setItem("pendingUserEmail", email);
+  localStorage.setItem("currentUser", JSON.stringify(user));
 
-  document.getElementById("signup").style.display = "none";
-  document.getElementById("signin").style.display = "block";
-
+  window.location.href = "dashboard.html";
   event.target.reset();
 }
 
-function logout() {
-  localStorage.removeItem("currentUser");
-  window.location.href = "index.html";
-}
-
+// ===== SIGN IN =====
 function SignIn(event) {
   event.preventDefault();
 
   var InputEmail = document.getElementById("given-email").value;
   var InputPassword = document.getElementById("given-password").value;
 
-  var found = false;
+  var foundUser = users.find(
+    (u) => u.email === InputEmail && u.password === InputPassword
+  );
 
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].email === InputEmail && users[i].password === InputPassword) {
-      localStorage.setItem("currentUser", JSON.stringify(users[i]));
-      window.location.href = "dashboard.html";
-      console.log("Login successful:", users[i]);
-
-      found = true;
-
-      break;
-    }
-  }
-
-  if (!found) {
+  if (foundUser) {
+    localStorage.setItem("currentUser", JSON.stringify(foundUser));
+    window.location.href = "dashboard.html";
+  } else {
     alert("Invalid email or password");
-    console.log("Login failed");
   }
 }
+
+// ===== LOGOUT =====
+function logout() {
+  localStorage.removeItem("currentUser");
+  window.location.href = "index.html";
+}
+
+// ===== NAVIGATION =====
 function dash() {
   window.location.href = "dashboard.html";
 }
 
-function renderDashboard(currentUser) {
-  if (!window.location.href.includes("dashboard.html")) return;
+function friendsshow() {
   if (!currentUser) {
-    return;
+    alert("Please log in first.");
+    window.location.href = "index.html";
+  } else {
+    window.location.href = "friends.html";
   }
-
-  document.getElementById("currentUserName").innerText = currentUser.fullName;
-
-  var userLogo = document.getElementById("user-logo");
-  if (userLogo) {
-    userLogo.innerHTML = `${currentUser.FirstName[0]}${currentUser.SecondName[0]}`;
-  }
-
-  console.log("Dashboard loaded for:", currentUser.fullName);
 }
 
+// ===== SWITCH FORMS =====
 function showSignUp() {
   document.getElementById("signup").style.display = "block";
   document.getElementById("signin").style.display = "none";
@@ -112,45 +98,34 @@ function showSignIn() {
   document.getElementById("signup").style.display = "none";
 }
 
-function friendsshow() {
-  if (!currentUser) {
-    alert("Please log in first.");
-    window.location.href = "index.html";
-    return;
-  } else {
-    window.location.href = "friends.html";
+ // Days
+  const daySelect = document.getElementById('day');
+  for (let i = 1; i <= 31; i++) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i;
+    daySelect.appendChild(option);
   }
-}
 
-//  // Days
-//   const daySelect = document.getElementById('day');
-//   for (let i = 1; i <= 31; i++) {
-//     const option = document.createElement('option');
-//     option.value = i;
-//     option.textContent = i;
-//     daySelect.appendChild(option);
-//   }
+  // Months
+  const monthSelect = document.getElementById('month');
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  months.forEach((month, index) => {
+    const option = document.createElement('option');
+    option.value = index + 1;
+    option.textContent = month;
+    monthSelect.appendChild(option);
+  });
 
-//   // Months
-//   const monthSelect = document.getElementById('month');
-//   const months = [
-//     'January', 'February', 'March', 'April', 'May', 'June',
-//     'July', 'August', 'September', 'October', 'November', 'December'
-//   ];
-//   months.forEach((month, index) => {
-//     const option = document.createElement('option');
-//     option.value = index + 1;
-//     option.textContent = month;
-//     monthSelect.appendChild(option);
-//   });
-
-//   // Years (e.g. 1900–2025)
-//   const yearSelect = document.getElementById('year');
-//   const currentYear = new Date().getFullYear();
-//   for (let i = currentYear; i >= 1900; i--) {
-//     const option = document.createElement('option');
-//     option.value = i;
-//     option.textContent = i;
-//     yearSelect.appendChild(option);
-//   }
-// 
+  // Years (e.g. 1900–2025)
+  const yearSelect = document.getElementById('year');
+  const currentYear = new Date().getFullYear();
+  for (let i = currentYear; i >= 1900; i--) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i;
+    yearSelect.appendChild(option);
+  }

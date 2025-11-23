@@ -342,3 +342,68 @@ body {
     width: 160px;
   }
 }
+
+
+header.header {
+  background: #1e3a8a;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  align-items: center;
+}
+
+header button {
+  background: #3b82f6;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.feed {
+  width: 600px;
+  margin: 20px auto;
+}
+
+.create-post textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  resize: none;
+}
+
+.create-post button {
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.post-card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.post-actions {
+  margin-top: 10px;
+}
+
+.post-actions button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-right: 10px;
+  color: #1e3a8a;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}

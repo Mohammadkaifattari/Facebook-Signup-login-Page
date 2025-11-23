@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="sty.css">
-    <title>Facebook - Social Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Handbook - Social Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -619,32 +621,148 @@
                 min-width: 100px;
             }
         }
+
+        .create-post {
+            width: 600px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #create-post textarea {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #a0c4ff;
+            font-size: 15px;
+            resize: none;
+            margin-bottom: 10px;
+        }
+
+        #create-post button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: #1e3a8a;
+            color: white;
+            cursor: pointer;
+        }
+
+        .post {
+            width: 600px;
+            background: #e0f0ff;
+            padding: 15px;
+            margin: 15px auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .post__header,
+        .post__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post__author span {
+            font-weight: 600;
+        }
+
+        .footer__buttons span {
+            margin-right: 15px;
+            cursor: pointer;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .footer__buttons span:hover {
+            color: #3b82f6;
+        }
+
+        .post-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        #searchInput {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        #sortFilter {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
+
 <body>
     <!-- Top Navigation -->
     <nav class="navbar">
         <div class="navbar-container">
+
+            <!-- Left Section -->
             <div class="navbar-left">
-                <div class="logo">facebook</div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Search Facebook">
+                <div class="logo">handbook</div>
+
+                <div class="post-controls">
+                    <!-- Search -->
+                    <input type="text" id="searchInput" placeholder="Search posts..." />
+
+                    <!-- Sort / Filter -->
+                    <select id="sortFilter">
+                        <option value="latest">Latest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="mostLiked">Most Liked</option>
+                    </select>
                 </div>
-            </div>
-            <div class="navbar-center">
-                <div class="nav-icon" title="Home">🏠</div>
-               <div class="nav-item" onclick="friendsshow()">
-  <span class="nav-icon-small">👥</span>
-  <span>Friends</span>
-</div>
-                <div class="nav-icon" title="Videos">🎬</div>
-                <div class="nav-icon" title="Marketplace">🛍️</div>
-                <div class="nav-icon" title="Notifications">🔔</div>
-            </div>
-            <div class="navbar-right">
-             <div class="navbar-right">
- 
-    <button id="logoutBtn" onclick="logout() " style="
+
+                <!-- Container for posts -->
+                <div id="postsContainer"></div>
+
+
+                <!-- Center Section -->
+                <div class="navbar-center">
+                    <div class="nav-icon" title="Home">
+                        <i data-lucide="home"></i>
+                    </div>
+
+                    <div class="nav-item" onclick="friendsshow()">
+                        <i data-lucide="users"></i>
+                        <span>Friends</span>
+                    </div>
+
+                    <div class="nav-icon" title="Videos">
+                        <i data-lucide="video"></i>
+                    </div>
+
+                    <div class="nav-icon" title="Marketplace">
+                        <i data-lucide="store"></i>
+                    </div>
+
+                    <div class="nav-icon" title="Notifications">
+                        <i data-lucide="bell"></i>
+                    </div>
+                </div>
+
+                <!-- Right Section -->
+                <div class="navbar-right">
+                    <a href="./pages/profile.html">
+                        <div class="profile-icon">
+                            <i data-lucide="user-circle"></i>
+                        </div>
+                    </a>
+                </div>
+
+
+
+
+
+                <button id="logoutBtn" onclick="logout() " style="
   background-color: #1877f2;
   color: white;
   border: none;
@@ -653,13 +771,13 @@
   cursor: pointer;
   font-weight: bold;
 ">Logout</button>
-</div>
             </div>
-        </div>asd
+
     </nav>
 
     <!-- Main Container -->
     <div class="container">
+        
         <!-- Left Sidebar -->
         <aside class="sidebar-left" style="bottom: -100vh;">
             <div class="user-profile">
@@ -667,243 +785,186 @@
                 <div class="user-name" id="currentUserName"></div>
             </div>
             <nav class="sidebar-nav">
-                <div class="nav-item active">
-                    <span class="nav-icon-small">🏠</span>
+                <div class="nav-item active" onclick="dash()">
+                    <i data-lucide="home" class="nav-icon-small"></i>
                     <span>Home</span>
                 </div>
                 <div class="nav-item">
-                    <span class="nav-icon-small">🤖</span>
+                    <i data-lucide="cpu" class="nav-icon-small"></i>
                     <span>Meta AI</span>
                 </div>
-                <div class="nav-item">
-                    <span class="nav-icon-small" onclick="friendsshow()">👥</span>
+                <div class="nav-item" onclick="friendsshow()">
+                    <i data-lucide="users" class="nav-icon-small"></i>
                     <span>Friends</span>
                 </div>
                 <div class="nav-item">
-                    <span class="nav-icon-small">📸</span>
+                    <i data-lucide="camera" class="nav-icon-small"></i>
                     <span>Memories</span>
                 </div>
                 <div class="nav-item">
-                    <span class="nav-icon-small">🔖</span>
+                    <i data-lucide="bookmark" class="nav-icon-small"></i>
                     <span>Saved</span>
                 </div>
                 <div class="nav-item">
-                    <span class="nav-icon-small">👫</span>
+                    <i data-lucide="user-check" class="nav-icon-small"></i>
                     <span>Groups</span>
                 </div>
                 <div class="nav-item">
-                    <span class="nav-icon-small">🎬</span>
+                    <i data-lucide="video" class="nav-icon-small"></i>
                     <span>Video</span>
                 </div>
                 <div class="nav-item">
-                    <span class="nav-icon-small">🛍️</span>
+                    <i data-lucide="shopping-bag" class="nav-icon-small"></i>
                     <span>Marketplace</span>
                 </div>
                 <div class="nav-item">
-                    <span class="nav-icon-small">📰</span>
+                    <i data-lucide="file-text" class="nav-icon-small"></i>
                     <span>Feeds</span>
                 </div>
                 <div class="nav-item">
-                    <span class="nav-icon-small">📅</span>
+                    <i data-lucide="calendar" class="nav-icon-small"></i>
                     <span>Events</span>
                 </div>
             </nav>
         </aside>
 
-        <!-- Main Feed -->
-        <main class="feed">
-            <!-- Post Composer -->
-            <div class="post-composer">
-                <div class="composer-header">
-                
-                    <input type="text" class="composer-input" placeholder="What's on your mind, John?">
-                </div>
-                <div class="composer-actions">
-                    <button class="action-btn">
-                        <span>🎥</span>
-                        <span>Live video</span>
-                    </button>
-                    <button class="action-btn">
-                        <span>🖼️</span>
-                        <span>Photo/video</span>
-                    </button>
-                    <button class="action-btn">
-                        <span>😊</span>
-                        <span>Feeling/activity</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Stories -->
-            <div class="stories">
-                <div class="story">
-                    <div class="story-avatar" id="user-logo"></div>
-                    <div class="story-name">Your Story</div>
-                </div>
-                <div class="story">
-                    <div class="story-avatar">AB</div>
-                    <div class="story-name">Alice Brown</div>
-                </div>
-                <div class="story">
-                    <div class="story-avatar">CM</div>
-                    <div class="story-name">Charlie Miller</div>
-                </div>
-                <div class="story">
-                    <div class="story-avatar">SD</div>
-                    <div class="story-name">Sarah Davis</div>
-                </div>
-            </div>
-
-            <!-- Post 1 -->
-            <div class="container1">
-      <div class="post">
-        <!-- POST HEADER -->
-        <div class="post__header header">
-          <!-- Header left -->
-          <div class="header__left">
-            <a href="#"
-              ><img src="./images/author-pic.jpg" class="post__author-pic"
-            /></a>
-            
-            <div class="post__author author">
-              <span class="author__name"><a href="#"> <div class="user-avatar" id="user-logo"></div>
-                <div class="user-name" id="currentUserName"></div></span>
-              <i class="author__verified"></i>
-            </div>
-            <span class="post__date"><a href="#">October 13, 2020</a></span>
-            <span class="post__date-privacy-separator">&nbsp;·</span>
-            <i class="post__privacy"></i>
-          </div>
-          <!-- Header right -->
-          <div class="header__right">
-            <div class="post__options options">
-              <i class="options__icon"></i>
-            </div>
-          </div>
+        <div class="create-post">
+            <textarea id="post-input" placeholder="What's on your mind?"></textarea>
+            <button onclick="createPost()">Post</button>
+             <div class="posts-container" id="posts-container">
+            <!-- Posts will be dynamically injected here -->
         </div>
-        <!-- POST CONTENT -->
-        <div class="post__content content">
-          <p class="content__paragraph"> hi i am here
-          
-          </p>
-          
+        <!-- Post 1 -->
+        <div class="container1">
+            <div class="post">
+                <!-- POST HEADER -->
+                <div class="post__header header">
+                    <!-- Header left -->
+                    <div class="header__left">
+                        <a href="#"><img src="./images/author-pic.jpg" class="post__author-pic" /></a>
+
+                        <div class="post__author author">
+                            <span class="author__name"><a href="#">
+                                    <div class="user-avatar" id="user-logo"></div>
+                                    <div class="user-name" id="currentUserName"></div></span>
+                            <i class="author__verified"></i>
+                        </div>
         </div>
-        <!-- POST FOOTER -->
-        <div class="post__footer footer">
-          <!-- Reactions -->
-          <div class="footer__reactions reactions">
-            <div class="reactions__emojis emojis">
-              <img src="images/like.svg" class="emojis__like" />
-              <img src="images/haha.svg" class="emojis__haha" />
-              <img src="images/love.svg" class="emojis__love" />
-              <span class="emojis__count"><a href="#"></a></span>
-            </div>
-            <div class="reactions__comments-shares comment-shares">
-              <span class="comment-shares__comments"
-                ><a href="#"> Comments</a></span
-              >
-              <span class="comment-shares__shares"
-                ><a href="#"> Shares</a></span
-              >
-            </div>
-          </div>
-          <!-- Buttons -->
-          <div class="footer__buttons buttons">
-            <span class="buttons__like like"
-              ><i class="like__icon"></i>Like</span
-            >
-            <span class="buttons__comment comment"
-              ><i class="comment__icon"></i>Comment</span
-            >
-            <span class="buttons__share share"
-              ><i class="share__icon"></i>Share</span
-            >
-          </div></div>
-<!--  -->
-        </main>
 
-        <!-- Right Sidebar -->
-        <aside class="sidebar-right">
-            <!-- Sponsored Section -->
-            <div class="sidebar-section">
-                <div class="section-title">Sponsored</div>
-                <div class="ad-card">Ad Space 1</div>
-                <div class="ad-card">Ad Space 2</div>
-            </div>
-
-            <!-- Group Chats Section -->
-            <div class="sidebar-section">
-                <div class="section-title">Group Chats</div>
-                <button class="create-btn">+ Create group chat</button>
-                <div class="group-chat-item">
-                    <div class="avatar-small">GC</div>
-                    <div class="item-name">Dev Team</div>
-                </div>
-                <div class="group-chat-item">
-                    <div class="avatar-small">FC</div>
-                    <div class="item-name">Friends Circle</div>
-                </div>
-            </div>
-
-            <!-- Contacts Section -->
-            <div class="sidebar-section">
-                <div class="section-title">Contacts</div>
-                <div class="contact-item">
-                    <div class="avatar-small">EM</div>
-                    <div class="item-name">Emma Wilson</div>
-                </div>
-                <div class="contact-item">
-                    <div class="avatar-small">LJ</div>
-                    <div class="item-name">Liam Johnson</div>
-                </div>
-                <div class="contact-item">
-                    <div class="avatar-small">OT</div>
-                    <div class="item-name">Olivia Taylor</div>
-                </div>
-            </div>
-        </aside>
-    </div>
-    <script src="apps.js"></script>
-</body>
-</html>
-<!-- 
-            <!-- Post 2 -->
-          <!-- lass="post-name">Sarah Davis</div> -->
-                            <+-->
-                    Coffee an  <!-- <div class="post">
-                <div class="post-header">
-                    <div class="post-author">
-                        <div class="post-avatar">CM</div>
-                        <div class="post-info">
-                            <div class="post-name">Charlie Miller</div>
-                            <div class="post-time">4 hours ago</div>
+       
+                        <span class="post__date"><a href="#">October 13, 2020</a></span>
+                        <span class="post__date-privacy-separator">&nbsp;·</span>
+                        <i class="post__privacy"></i>
+                    </div>
+                    <!-- Header right -->
+                    <div class="header__right">
+                        <div class="post__options options">
+                            <i class="options__icon"></i>
                         </div>
                     </div>
-                    <div class="post-menu">⋯</div>
                 </div>
-                <div class="post-content">
-                    Exploring new places and making memories with friends. Life is beautiful! 🌍✨
-                </div>
-                <div class="post-image">Travel Adventure</div>
-                <div class="post-actions">
-                    <button class="post-action">👍 Like</button>
-                    <button class="post-action">💬 Comment</button>
-                    <button class="post-action">↗️ Share</button>
-                </div>
-            </div>
+                <!-- POST CONTENT -->
+                <div class="post__content content">
+                    <p class="content__paragraph"> hi i am here
 
-            <!-- Post 3 -->
-            <!-- <div class="post">
-                <div class="post-header">
-                    <div class="post-author">
-                        <div class="post-avatar">SD</div>
-                        <div class="post-info">
-                            <div cd code - the perfect combination for a productive day! ☕💻
+                    </p>
+
+
                 </div>
-                <div class="post-image">Workspace Setup</div>
-                <div class="post-actions">
-                    <button class="post-action">👍 Like</button>
-                    <button class="post-action">💬 Comment</button>
-                    <button class="post-action">↗️ Share</button>
-                </div> -->
-            </div> -->
+                <!-- POST FOOTER -->
+                <div class="post__footer footer">
+                    <!-- Reactions -->
+                    <div class="footer__reactions reactions">
+                        <div class="reactions__emojis emojis">
+                            <img src="images/like.svg" class="emojis__like" />
+                            <img src="images/haha.svg" class="emojis__haha" />
+                            <img src="images/love.svg" class="emojis__love" />
+                            <span class="emojis__count"><a href="#"></a></span>
+                        </div>
+                        <div class="reactions__comments-shares comment-shares">
+                            <span class="comment-shares__comments"><a href="#"> Comments</a></span>
+                            <span class="comment-shares__shares"><a href="#"> Shares</a></span>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="footer__buttons buttons">
+                        <span class="buttons__like like"><i class="like__icon"></i>Like</span>
+                        <span class="buttons__comment comment"><i class="comment__icon"></i>Comment</span>
+                        <span class="buttons__share share"><i class="share__icon"></i>Share</span>
+                    </div>
+                </div>
+                <!--  -->
+                </main>
+
+                <!-- Right Sidebar -->
+                <aside class="sidebar-right">
+                    <!-- Sponsored Section -->
+                    <div class="sidebar-section">
+                        <div class="section-title">Sponsored</div>
+                        <div class="ad-card">Ad Space 1</div>
+                        <div class="ad-card">Ad Space 2</div>
+                    </div>
+
+                    <!-- Group Chats Section -->
+                    <div class="sidebar-section">
+                        <div class="section-title">Group Chats</div>
+                        <button class="create-btn">+ Create group chat</button>
+                        <div class="group-chat-item">
+                            <div class="avatar-small">GC</div>
+                            <div class="item-name">Dev Team</div>
+                        </div>
+                        <div class="group-chat-item">
+                            <div class="avatar-small">FC</div>
+                            <div class="item-name">Friends Circle</div>
+                        </div>
+                    </div>
+
+                    <!-- Contacts Section -->
+                    <div class="sidebar-section">
+                        <div class="section-title">Contacts</div>
+                        <div class="contact-item">
+                            <div class="avatar-small">EM</div>
+                            <div class="item-name">Emma Wilson</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="avatar-small">LJ</div>
+                            <div class="item-name">Liam Johnson</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="avatar-small">OT</div>
+                            <div class="item-name">Olivia Taylor</div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <main class="feed">
+                <!-- Create Post -->
+                <section class="create-post">
+                    <textarea id="post-text" placeholder="What's on your mind?"></textarea>
+                    <button onclick="createPost()">Post</button>
+                </section>
+
+                <!-- Search + Filters -->
+                <section class="controls">
+                    <input type="text" id="search" placeholder="Search posts..." oninput="renderPosts()">
+                    <select id="sort" onchange="renderPosts()">
+                        <option value="latest">Latest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="most-liked">Most Liked</option>
+                    </select>
+                </section>
+
+                <!-- Posts Container -->
+                <section id="posts-container"></section>
+            </main>
+
+            <script type="module" src="posts.js"></script>
+            <script src="apps.js"></script>
+            <script src="dashboard.js"></script>
+            <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+            <script>
+                lucide.createIcons();
+            </script>
+</body>
+
+</html>
